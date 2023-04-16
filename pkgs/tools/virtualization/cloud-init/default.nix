@@ -10,6 +10,7 @@
 , shadow
 , systemd
 , coreutils
+, gitUpdater
 }:
 
 python3.pkgs.buildPythonApplication rec {
@@ -112,7 +113,10 @@ python3.pkgs.buildPythonApplication rec {
     "cloudinit"
   ];
 
-  passthru.tests = { inherit (nixosTests) cloud-init cloud-init-hostname; };
+  passthru = {
+    updateScript = gitUpdater { ignoredVersions = ".ubuntu.*"; };
+    tests = { inherit (nixosTests) cloud-init cloud-init-hostname; };
+  };
 
   meta = with lib; {
     homepage = "https://cloudinit.readthedocs.org";

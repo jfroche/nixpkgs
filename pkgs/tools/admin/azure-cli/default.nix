@@ -1,7 +1,7 @@
 { stdenv, lib, python3, fetchFromGitHub, installShellFiles }:
 
 let
-  version = "2.44.1";
+  version = "2.47.0";
   srcName = "azure-cli-${version}-src";
 
   src = fetchFromGitHub {
@@ -9,7 +9,7 @@ let
     owner = "Azure";
     repo = "azure-cli";
     rev = "azure-cli-${version}";
-    hash = "sha256-QcY08YxwGywFCXy3PslEzc5qZd62y4XAcuIC9Udp6Cc=";
+    hash = "sha256-cJWS64fxW5AUgLDwbwoIhqRjPm5REux0RqmY/H48B3Q=";
   };
 
   # put packages that needs to be overridden in the py package scope
@@ -60,6 +60,7 @@ py.pkgs.toPythonApplication (py.pkgs.buildAzureCliPackage {
     azure-mgmt-apimanagement
     azure-mgmt-applicationinsights
     azure-mgmt-appconfiguration
+    azure-mgmt-appcontainers
     azure-mgmt-authorization
     azure-mgmt-batch
     azure-mgmt-batchai
@@ -201,6 +202,7 @@ py.pkgs.toPythonApplication (py.pkgs.buildAzureCliPackage {
     "azure.mgmt.apimanagement"
     "azure.mgmt.applicationinsights"
     "azure.mgmt.appconfiguration"
+    "azure.mgmt.appcontainers"
     "azure.mgmt.authorization"
     "azure.mgmt.batch"
     "azure.mgmt.batchai"
